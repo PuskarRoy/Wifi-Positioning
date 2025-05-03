@@ -5,7 +5,4 @@
     <item
         android:id="@+id/chooseDatasetMenu"
         android:title="Choose Dataset" />
-    <item
-        android:id="@+id/realTimeMenu"
-        android:title="Real Time Positioning"/>
 </menu>

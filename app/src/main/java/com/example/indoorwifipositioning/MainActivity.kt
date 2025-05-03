@@ -58,8 +58,9 @@ class MainActivity : AppCompatActivity() {
         filename = intent.getStringExtra("filename")!!
         getRoomButton.visibility =
             if (filename.equals("JUIndoorLoc-Training-data.csv")) View.VISIBLE else View.GONE
+        showInMapButton.visibility =
+            if (filename.equals("Complete_HL_ROY_Building_Data.csv")) View.INVISIBLE else View.VISIBLE
         readCSV(filename)
-
         nextButton.setOnClickListener {
 
             if (row_count < csvTestData.size) {
@@ -107,15 +108,12 @@ class MainActivity : AppCompatActivity() {
         }
         showInMapButton.setOnClickListener {
 
-            Intent(this, MapActivity::class.java).also{
+            Intent(this, MapActivity::class.java).also {
                 it.putExtra("filename", filename)
                 it.putExtra("cellId", cellId)
                 startActivity(it)
             }
         }
-
-
-
 
 
     }
@@ -257,11 +255,6 @@ class MainActivity : AppCompatActivity() {
                     startActivity(it)
                     finish()
                 }
-                return true
-            }
-
-            R.id.realTimeMenu -> {
-                Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show()
                 return true
             }
 
