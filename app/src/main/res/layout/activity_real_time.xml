@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MapActivity">
+
+
+    <FrameLayout
+        android:id="@+id/floorplanContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/floorplanImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/r5_markar"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="604dp"
+                android:src="@drawable/outline_circle_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/r7_markar"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="152dp"
+                android:layout_marginBottom="420dp"
+                android:src="@drawable/outline_circle_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/r4_markar"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="484dp"
+                android:src="@drawable/outline_circle_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/r6_markar"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="156dp"
+                android:layout_marginBottom="596dp"
+                android:src="@drawable/outline_circle_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/r8_markar"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="156dp"
+                android:layout_marginBottom="240dp"
+                android:src="@drawable/outline_circle_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/r3_markar"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="324dp"
+                android:src="@drawable/outline_circle_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/r2_markar"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="172dp"
+                android:src="@drawable/outline_circle_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/r9_markar"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="268dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/outline_circle_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/r1_marker"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/outline_circle_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/r10_markar"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="280dp"
+                android:layout_marginBottom="160dp"
+                android:src="@drawable/outline_circle_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ImageView
+            android:id="@+id/markerView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/baseline_adjust_24"
+            android:visibility="gone"/>
+
+
+    </FrameLayout>
+
+
+</LinearLayout>

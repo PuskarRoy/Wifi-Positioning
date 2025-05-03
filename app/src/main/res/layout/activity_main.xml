@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#393E46"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tooblar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#00ADB5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Indoor Wifi Positioning"
+                    android:textColor="#EEEEEE"
+                    android:textSize="23sp"
+                    android:textStyle="bold|italic"
+
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="25dp"
+        android:elevation="30dp"
+        android:text="Only For Testing Purpose"
+        android:textAlignment="center"
+        android:textColor="#EEEEEE"
+        android:textSize="30sp"
+        android:textStyle="italic"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp
+"
+        android:layout_marginTop="25dp"
+        android:elevation="25dp"
+        android:paddingVertical="10dp"
+        android:text="Predicted Location :"
+        android:textColor="#EEEEEE"
+        android:textSize="22sp"
+        android:textStyle="italic"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/predictedTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="#00ADB5"
+        android:elevation="30dp"
+        android:padding="10dp"
+        android:shadowColor="@color/white"
+        android:text="Loading..."
+        android:textAlignment="center"
+        android:textColor="#EEEEEE"
+        android:textSize="28sp"
+        android:textStyle="italic" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:elevation="25dp"
+        android:paddingVertical="10dp"
+        android:text="Actual Location :"
+        android:textColor="#EEEEEE"
+        android:textSize="22sp"
+        android:textStyle="italic"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/actualTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="#00ADB5"
+        android:elevation="30dp"
+        android:padding="10dp"
+        android:shadowColor="@color/white"
+        android:text="Loading..."
+        android:textAlignment="center"
+        android:textColor="#EEEEEE"
+        android:textSize="28sp"
+        android:textStyle="italic" />
+
+
+    <Button
+        android:id="@+id/getRoomButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:backgroundTint="#FFFFFF"
+        android:elevation="30dp"
+        android:text="get cell number"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="italic"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/showInMapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:backgroundTint="#FFFFFF"
+        android:elevation="30dp"
+        android:text="Show In Map"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="italic"
+        tools:visibility="visible" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/previousButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="20dp"
+            android:layout_weight="1"
+            android:background="#00ADB5"
+            android:elevation="30dp"
+            android:shadowColor="@color/white"
+            android:text="Previous"
+            android:textColor="#EEEEEE"
+            android:textSize="20sp"
+            android:textStyle="italic" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="20dp"
+            android:layout_weight="1"
+            android:background="#00ADB5"
+            android:elevation="30dp"
+            android:shadowColor="@color/white"
+            android:text="Next"
+            android:textColor="#EEEEEE"
+            android:textSize="20sp"
+            android:textStyle="italic" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
