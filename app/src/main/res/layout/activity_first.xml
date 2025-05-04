@@ -1,25 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#222831"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#222831"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".FirstActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/testingButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:elevation="30dp"
+            android:padding="10dp"
+            android:text="Testing"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/realTimeButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#808080"
+            android:elevation="30dp"
+            android:padding="10dp"
+            android:text="Real Time"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose Your Data Set"
-        android:textSize="30sp"
-        android:textColor="#EEEEEE"
-        android:textAlignment="center"
-        android:textStyle="italic"
-        android:elevation="30dp"
-        android:padding="10dp"
         android:layout_marginHorizontal="15dp"
         android:layout_marginVertical="25dp"
+        android:elevation="30dp"
+        android:padding="10dp"
+        android:text="Choose Your Data Set"
+        android:textAlignment="center"
+        android:textColor="#EEEEEE"
+        android:textSize="30sp"
+        android:textStyle="italic"
 
         />
 
@@ -28,32 +63,30 @@
         android:id="@+id/HL_ROY_Building_Data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00ADB5"
-        android:text="HL_ROY_Building_Data"
-        android:textSize="20sp"
-        android:textColor="#EEEEEE"
         android:layout_marginHorizontal="15dp"
         android:layout_marginVertical="20dp"
-        android:textStyle="italic"
+        android:background="#00ADB5"
         android:elevation="30dp"
         android:shadowColor="@color/white"
-        />
+        android:text="HL_ROY_Building_Data"
+        android:textColor="#EEEEEE"
+        android:textSize="20sp"
+        android:textStyle="italic" />
 
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/JU_IndoorLoc_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00ADB5"
-        android:text="JU_IndoorLoc_Data"
-        android:textSize="20sp"
-        android:textColor="#EEEEEE"
         android:layout_marginHorizontal="15dp"
         android:layout_marginVertical="25dp"
-        android:textStyle="italic"
+        android:background="#00ADB5"
         android:elevation="30dp"
         android:shadowColor="@color/white"
-        />
+        android:text="JU_IndoorLoc_Data"
+        android:textColor="#EEEEEE"
+        android:textSize="20sp"
+        android:textStyle="italic" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Alpha_Lab_Data"
@@ -69,9 +102,19 @@
         android:textSize="20sp"
         android:textStyle="italic" />
 
-
-
-
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/textView"
+        android:layout_marginVertical="10dp"
+        android:layout_width="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
+        android:background="#FFFF00"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="23sp"
+        android:padding="10dp"
+        android:text="It is recommended to disable Wi-Fi scan throttling to facilitate more frequent network scans." />
 
 
 </LinearLayout>
