@@ -16,7 +16,8 @@ class FirstActivity : AppCompatActivity() {
     private lateinit var testingButton: Button
     private lateinit var realTimeButton: Button
     private var testingBool: Boolean = false
-    private lateinit var textView: TextView
+    private lateinit var textView1: TextView
+    private lateinit var textView2: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,14 +27,17 @@ class FirstActivity : AppCompatActivity() {
         button3 = findViewById(R.id.Alpha_Lab_Data)
         testingButton = findViewById(R.id.testingButton)
         realTimeButton = findViewById(R.id.realTimeButton)
-        textView = findViewById(R.id.textView)
+        textView1 = findViewById(R.id.txt1)
+        textView2 = findViewById(R.id.txt2)
 
         testingButton.setBackgroundColor(Color.GRAY)
         realTimeButton.setBackgroundColor(Color.WHITE)
         button1.visibility = View.VISIBLE
         button2.visibility = View.VISIBLE
         button3.visibility = View.VISIBLE
-        textView.visibility = View.GONE
+        textView1.visibility = View.GONE
+        textView2.visibility = View.GONE
+
 
         button1.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
@@ -76,7 +80,8 @@ class FirstActivity : AppCompatActivity() {
             button1.visibility = View.VISIBLE
             button2.visibility = View.VISIBLE
             button3.visibility = View.VISIBLE
-            textView.visibility = View.GONE
+            textView1.visibility = View.GONE
+            textView2.visibility = View.GONE
         }
         realTimeButton.setOnClickListener {
             testingBool = false
@@ -85,7 +90,8 @@ class FirstActivity : AppCompatActivity() {
             button1.visibility = View.GONE
             button2.visibility = View.GONE
             button3.visibility = View.VISIBLE
-            textView.visibility = View.VISIBLE
+            textView1.visibility = View.VISIBLE
+            textView2.visibility = View.VISIBLE
         }
     }
 }

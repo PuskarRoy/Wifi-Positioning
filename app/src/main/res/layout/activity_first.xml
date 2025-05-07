@@ -103,18 +103,32 @@
         android:textStyle="italic" />
 
     <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-        android:id="@+id/textView"
-        android:layout_marginVertical="10dp"
+        android:id="@+id/txt1"
         android:layout_width="wrap_content"
-        android:layout_marginHorizontal="30dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="10dp"
         android:background="#FFFF00"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textSize="23sp"
         android:padding="10dp"
-        android:text="It is recommended to disable Wi-Fi scan throttling to facilitate more frequent network scans." />
+        android:text="It is recommended to on the Wifi and Location"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="10dp"
+        android:background="#FFFF00"
+        android:padding="10dp"
+        android:text="It is recommended to disable Wi-Fi scan throttling to facilitate more frequent network scans."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        android:textStyle="bold" />
 
 
 </LinearLayout>
