@@ -148,12 +148,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="9dp"
                 android:layout_marginBottom="7dp"
+                android:backgroundTint="#DD6363"
                 android:clickable="true"
-                android:backgroundTint="#A88080"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:visibility="gone"
-                app:srcCompat="@drawable/gps_15949717" />
+                app:srcCompat="@drawable/gps_15949717"
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

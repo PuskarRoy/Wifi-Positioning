@@ -183,9 +183,9 @@ class RealTimeActivity : AppCompatActivity() {
     }
     private fun requestLocationPermission() {
         if (ContextCompat.checkSelfPermission(
-                this, android.Manifest.permission.ACCESS_FINE_LOCATION
+                this, Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                this, android.Manifest.permission.ACCESS_COARSE_LOCATION
+                this, Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             ActivityCompat.requestPermissions(
@@ -196,7 +196,9 @@ class RealTimeActivity : AppCompatActivity() {
             )
         }
     }
-    private fun extractInputVector(scanMap: Map<String, Double>): List<Double> {
+
+
+    private fun extractWifiLevel(scanMap: Map<String, Double>): List<Double> {
         val featureList = mutableListOf<Double>()
         val headers = csvData.first().drop(1)
 
@@ -213,7 +215,7 @@ class RealTimeActivity : AppCompatActivity() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 val results = wifiManager.scanResults
                 val scanMap = results.associateBy({ it.BSSID }, { it.level.toDouble() })
-                val inputFeatures = extractInputVector(scanMap)
+                val inputFeatures = extractWifiLevel(scanMap)
                 val predictedCell = knnPredict(inputFeatures)
                 runOnUiThread {
                     progressDialog.dismiss()
