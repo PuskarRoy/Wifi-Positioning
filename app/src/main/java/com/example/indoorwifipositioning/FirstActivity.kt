@@ -18,6 +18,7 @@ class FirstActivity : AppCompatActivity() {
     private var testingBool: Boolean = false
     private lateinit var textView1: TextView
     private lateinit var textView2: TextView
+    private lateinit var wifidatashow : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +30,7 @@ class FirstActivity : AppCompatActivity() {
         realTimeButton = findViewById(R.id.realTimeButton)
         textView1 = findViewById(R.id.txt1)
         textView2 = findViewById(R.id.txt2)
+        wifidatashow = findViewById(R.id.wifidatashow)
 
         testingButton.setBackgroundColor(Color.GRAY)
         realTimeButton.setBackgroundColor(Color.WHITE)
@@ -37,6 +39,7 @@ class FirstActivity : AppCompatActivity() {
         button3.visibility = View.VISIBLE
         textView1.visibility = View.GONE
         textView2.visibility = View.GONE
+        wifidatashow.visibility = View.GONE
 
 
         button1.setOnClickListener {
@@ -73,6 +76,12 @@ class FirstActivity : AppCompatActivity() {
            }
         }
 
+        wifidatashow.setOnClickListener {
+            Intent(this, showwifidata::class.java).also{
+                startActivity(it)
+            }
+        }
+
         testingButton.setOnClickListener {
             testingBool = true
             testingButton.setBackgroundColor(Color.GRAY)
@@ -82,6 +91,7 @@ class FirstActivity : AppCompatActivity() {
             button3.visibility = View.VISIBLE
             textView1.visibility = View.GONE
             textView2.visibility = View.GONE
+            wifidatashow.visibility = View.GONE
         }
         realTimeButton.setOnClickListener {
             testingBool = false
@@ -92,6 +102,7 @@ class FirstActivity : AppCompatActivity() {
             button3.visibility = View.VISIBLE
             textView1.visibility = View.VISIBLE
             textView2.visibility = View.VISIBLE
+            wifidatashow.visibility = View.VISIBLE
         }
     }
 }

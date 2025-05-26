@@ -71,6 +71,9 @@ class RealTimeActivity : AppCompatActivity() {
         wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
 
         floatingActionButton.setOnClickListener {
+            registerReceiver(
+                wifiReceiver, android.content.IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)
+            )
             val success = wifiManager.startScan()
             if (!success) {
                 Toast.makeText(this@RealTimeActivity, "Scan failed", Toast.LENGTH_SHORT).show()
@@ -115,7 +118,6 @@ class RealTimeActivity : AppCompatActivity() {
         val data = csvData
         val k = 3
         val distances = mutableListOf<Pair<String, Double>>()
-
         for (row in data) {
             val cellId = row[0]
             val features = mutableListOf<Double>()
@@ -125,16 +127,13 @@ class RealTimeActivity : AppCompatActivity() {
             val distance = euclideanDistance(features, input)
             distances.add(Pair(cellId, distance))
         }
-
         distances.sortBy { it.second }
         val nearestNeighbors = distances.subList(0, k)
-
         val frequencyMap = mutableMapOf<String, Int>()
         for (neighbor in nearestNeighbors) {
             val cellId = neighbor.first
             frequencyMap[cellId] = frequencyMap.getOrDefault(cellId, 0) + 1
         }
-
         var maxCount = 0
         var predictedCellId = "Prediction unavailable"
         for ((cellId, count) in frequencyMap) {
@@ -146,6 +145,7 @@ class RealTimeActivity : AppCompatActivity() {
         return predictedCellId
 
     }
+
     private fun showPointerAlpha(cellId: String) {
         if (cellId.equals("R1")) {
             r1_marker.visibility = View.VISIBLE
@@ -169,6 +169,7 @@ class RealTimeActivity : AppCompatActivity() {
             r10_marker.visibility = View.VISIBLE
         }
     }
+
     private fun hideAllMarkers() {
         r1_marker.visibility = View.GONE
         r2_marker.visibility = View.GONE
@@ -181,6 +182,7 @@ class RealTimeActivity : AppCompatActivity() {
         r9_marker.visibility = View.GONE
         r10_marker.visibility = View.GONE
     }
+
     private fun requestLocationPermission() {
         if (ContextCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_FINE_LOCATION
@@ -208,12 +210,14 @@ class RealTimeActivity : AppCompatActivity() {
 
         return featureList
     }
+
     private fun setupWifiScan() {
         wifiReceiver = object : BroadcastReceiver() {
             @SuppressLint("MissingPermission")
             @RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
             override fun onReceive(context: Context?, intent: Intent?) {
                 val results = wifiManager.scanResults
+
                 val scanMap = results.associateBy({ it.BSSID }, { it.level.toDouble() })
                 val inputFeatures = extractWifiLevel(scanMap)
                 val predictedCell = knnPredict(inputFeatures)
@@ -222,10 +226,11 @@ class RealTimeActivity : AppCompatActivity() {
                     hideAllMarkers()
                     showPointerAlpha(predictedCell)
                 }
+                unregisterReceiver(wifiReceiver)
+
 
             }
         }
-
         registerReceiver(
             wifiReceiver, android.content.IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)
         )
