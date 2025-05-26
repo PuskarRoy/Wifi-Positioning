@@ -102,20 +102,6 @@
         android:textSize="20sp"
         android:textStyle="italic" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/wifidatashow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="25dp"
-        android:background="#00ADB5"
-        android:elevation="30dp"
-        android:shadowColor="@color/white"
-        android:text="Wifi Data Show"
-        android:textColor="#EEEEEE"
-        android:textSize="20sp"
-        android:textStyle="italic" />
-
     <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/txt1"
         android:layout_width="wrap_content"

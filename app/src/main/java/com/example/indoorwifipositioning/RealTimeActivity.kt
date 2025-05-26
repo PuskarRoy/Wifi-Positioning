@@ -3,16 +3,12 @@ package com.example.indoorwifipositioning
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.annotation.RequiresPermission
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -23,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import kotlin.math.log
 import kotlin.math.sqrt
 
 class RealTimeActivity : AppCompatActivity() {
@@ -43,9 +40,12 @@ class RealTimeActivity : AppCompatActivity() {
     private lateinit var floatingActionButton: FloatingActionButton
 
     private lateinit var wifiManager: WifiManager
-    private lateinit var wifiReceiver: BroadcastReceiver
     private val LOCATION_PERMISSION_CODE = 101
+    private lateinit var headers: List<String>
+    private lateinit var scanMap: Map<String, Double>
 
+    @SuppressLint("MissingPermission")
+    @RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_real_time)
@@ -67,20 +67,17 @@ class RealTimeActivity : AppCompatActivity() {
         progressDialog.setCancelable(false)
         progressDialog.setMessage("Loading...")
         requestLocationPermission()
-        readCSV("Training_Complete_AlphaLab_Data.csv")
+        readCSV("Complete_AlphaLab_Data.csv")
         wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
+        scanMap = wifiManager.scanResults.associateBy({ it.BSSID }, { it.level.toDouble() })
 
         floatingActionButton.setOnClickListener {
-            registerReceiver(
-                wifiReceiver, android.content.IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)
-            )
-            val success = wifiManager.startScan()
-            if (!success) {
-                Toast.makeText(this@RealTimeActivity, "Scan failed", Toast.LENGTH_SHORT).show()
-            } else {
-                progressDialog.setMessage("Scanning...")
-                progressDialog.show()
-            }
+            progressDialog.show()
+            wifiManager.startScan()
+            scanMap = wifiManager.scanResults.associateBy({ it.BSSID }, { it.level.toDouble() })
+            Log.d("scanMap", scanMap.toSortedMap().toString())
+            extractWifiLevel(scanMap)
+            progressDialog.dismiss()
         }
 
     }
@@ -91,15 +88,17 @@ class RealTimeActivity : AppCompatActivity() {
             val data = mutableListOf<List<String>>()
             val inputStream = this@RealTimeActivity.assets.open(fileName)
             val reader = BufferedReader(InputStreamReader(inputStream))
-            reader.readLine()
+            headers = reader.readLine().split(',').drop(1).map { it.trim().lowercase() }
             reader.forEachLine {
                 data.add(it.split(","))
             }
             reader.close()
             csvData = data
             lifecycleScope.launch(Dispatchers.Main) {
-                progressDialog.setMessage("Scanning...")
-                setupWifiScan()
+                val feature = extractWifiLevel(scanMap)
+                val knn_predict = knnPredict(feature)
+                showPointerAlpha(knn_predict)
+                progressDialog.dismiss()
             }
 
         }
@@ -113,6 +112,7 @@ class RealTimeActivity : AppCompatActivity() {
         }
         return sqrt(sum)
     }
+
     fun knnPredict(input: List<Double>): String {
 
         val data = csvData
@@ -147,6 +147,7 @@ class RealTimeActivity : AppCompatActivity() {
     }
 
     private fun showPointerAlpha(cellId: String) {
+        hideAllMarkers()
         if (cellId.equals("R1")) {
             r1_marker.visibility = View.VISIBLE
         } else if (cellId.equals("R2")) {
@@ -199,51 +200,16 @@ class RealTimeActivity : AppCompatActivity() {
         }
     }
 
-
     private fun extractWifiLevel(scanMap: Map<String, Double>): List<Double> {
         val featureList = mutableListOf<Double>()
-        val headers = csvData.first().drop(1)
+        val nscanmap = scanMap.mapKeys { it.key.trim().lowercase() }
 
         for (bssid in headers) {
-            featureList.add(scanMap[bssid] ?: -110.0)
+            Log.d("wifiBssid", bssid + " " + nscanmap[bssid])
+            featureList.add(nscanmap[bssid] ?: -110.0)
         }
 
         return featureList
-    }
-
-    private fun setupWifiScan() {
-        wifiReceiver = object : BroadcastReceiver() {
-            @SuppressLint("MissingPermission")
-            @RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-            override fun onReceive(context: Context?, intent: Intent?) {
-                val results = wifiManager.scanResults
-
-                val scanMap = results.associateBy({ it.BSSID }, { it.level.toDouble() })
-                val inputFeatures = extractWifiLevel(scanMap)
-                val predictedCell = knnPredict(inputFeatures)
-                runOnUiThread {
-                    progressDialog.dismiss()
-                    hideAllMarkers()
-                    showPointerAlpha(predictedCell)
-                }
-                unregisterReceiver(wifiReceiver)
-
-
-            }
-        }
-        registerReceiver(
-            wifiReceiver, android.content.IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)
-        )
-
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        try {
-            unregisterReceiver(wifiReceiver)
-        } catch (e: Exception) {
-            Log.e("RealTimeActivity", "Receiver already unregistered or not registered")
-        }
     }
 
 

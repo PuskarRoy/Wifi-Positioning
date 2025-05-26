@@ -19,9 +19,6 @@
         android:theme="@style/Theme.IndoorWifiPositioning"
         tools:targetApi="31">
         <activity
-            android:name=".showwifidata"
-            android:exported="false" />
-        <activity
             android:name=".RealTimeActivity"
             android:exported="false" />
         <activity
